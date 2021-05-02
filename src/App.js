@@ -16,6 +16,13 @@ class App extends React.Component {
     }
   }
 
+  addCar = (car)=>{
+    this.setState({
+      carsJson: this.state.carsJson.concat(car)
+    })
+  }
+
+
   componentDidMount(){
     const cars= [
       {"brand": "Toyota", "model": "Yaris", "year": 2002, "km": 230000}, 
@@ -40,7 +47,10 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <CarsView carsData={this.state.carsJson}/>
+        <CarsView 
+        carsData={this.state.carsJson}
+        addCar={this.addCar}
+        />
       </div>
     );    
   }
