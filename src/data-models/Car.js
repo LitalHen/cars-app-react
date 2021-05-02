@@ -1,10 +1,12 @@
+import { v4 as uuid } from 'uuid';
+
 class Car {
-    constructor(brand, model, year, km, id){
+    constructor(brand, model, year, km){
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.km = km;
-        this.id = id;
+        this.id = uuid() ;
     } 
     kmPerYear() {
         const currentYear = new Date().getFullYear();

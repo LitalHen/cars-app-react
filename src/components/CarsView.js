@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron, Table } from 'react-bootstrap';
+import Car from '../data-models/Car';
 
 import './CarsView.css';
 // ./ means the current directory
@@ -9,7 +10,12 @@ class CarsView extends React.Component{
     constructor(props){
     super(props);
        this.state = {
-           currentCar : {}
+           currentCar : {},
+           brand:'',
+           model: '',
+           year: '',
+           km: ''
+
        };
 
     }
@@ -19,6 +25,19 @@ class CarsView extends React.Component{
                 currentCar: car
             }
         )
+    }
+
+    // addCar = () => {
+           
+
+           
+    // }
+
+   carInput=(type,val)=>{
+
+        this.setState({
+            [type]: val
+        })
     }
     render(){
         const carRows = this.props.carsData.map( car => {
@@ -52,7 +71,22 @@ class CarsView extends React.Component{
                 <h1>Selected car info</h1>
                 <h2>{this.state.currentCar.brand}</h2>
                 <h3>{this.state.currentCar.model}</h3>
+                <h3>{this.state.currentCar.year}</h3>
+                <h3>{this.state.currentCar.kmPerYear}</h3>
             </Jumbotron>
+
+            <form>
+                <label>Brand</label>
+                    <input value={this.state.brand} onChange ={(event)=>{this.carInput("brand",event.target.value)}} type="text"/>
+                <label>Model</label>
+                    <input value={this.state.model} onChange ={(event)=>{this.carInput("brand",event.target.value)}} type="text"/>
+                <label>Year</label>
+                    <input value={this.state.year} onChange ={(event)=>{this.carInput("brand",event.target.value)}} type="text"/>
+                <label>Km</label>
+                    <input value={this.state.km} onChange ={(event)=>{this.carInput("brand",event.target.value)}} type="text"/>
+
+                <button type="button" onClick={this.addCar} >Add Car</button>
+            </form>
             </div>
         )
     }
