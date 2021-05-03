@@ -30,7 +30,18 @@ class CarsView extends React.Component{
     createNewCar = () => {
            const newCar= new Car(this.state.brand, this.state.model, this.state.year, this.state.km)
 
-      this.props.addCar(newCar)     
+           this.props.addCar(newCar);
+           this.clearInput();     
+    }
+
+    clearInput=()=>{
+        this.setState({
+            brand:'',
+            model: '',
+            year: '',
+            km: ''
+        })
+
     }
 
    carInput=(key,val)=>{
@@ -85,7 +96,7 @@ class CarsView extends React.Component{
                 <label>Km</label>
                     <input value={this.state.km} onChange ={(event)=>{this.carInput("km",event.target.value)}} type="text"/>
 
-                <button type="button" onClick={this.createNewCar} >Add Car</button>
+                <button type="button" onClick={this.createNewCar}>Add Car</button>
             </form>
             </div>
         )
