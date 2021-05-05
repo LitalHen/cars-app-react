@@ -1,11 +1,12 @@
 import React from 'react';
-
 import './App.css';
 import CarsView from './components/CarsView';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Car from './data-models/Car';
 import { Spinner } from 'react-bootstrap';
-import reactDom from 'react-dom';
+import { HashRouter, Route } from 'react-router-dom';
+import About from './components/About';
+import ContactUs from './components/ContactUs';
 // ./ means the current directory
 // ../ means go up one directory
 // ./components/CarsView
@@ -42,15 +43,31 @@ class App extends React.Component {
 
   render(){
     return (
-      <div>
-        {(this.state.carsJson && this.state.carsJson.length >0) ?
-        <CarsView carsData={this.state.carsJson}
-        addCar={this.addCar}
-        />
-        :
-        <h1> Loading <Spinner animation="border" variant="primary" /></h1>}
-      </div>
+      <HashRouter>
+        <a className='nav-link' href="/">Home</a>
+        <a className='nav-link' href="./#/about">About</a>
+        <a className='nav-link' href="./#/ContactUs">Contact Us</a>
+
+        <Route exact path="/">
+            {(this.state.carsJson && this.state.carsJson.length >0) ?
+            <CarsView carsData={this.state.carsJson}
+            addCar={this.addCar}
+            />
+            :
+            <h1> Loading <Spinner animation="border" variant="primary" /></h1>}
+        </Route>
+
+        <Route exact path="/about">
+            <About/>
+        </Route>
+
+        <Route exact path="/contactUs">
+            <ContactUs/>
+        </Route>
+    
+      </HashRouter>
     );
+ 
   }
 
 }
