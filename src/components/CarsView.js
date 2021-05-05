@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Car from '../data-models/Car';
 
 import './CarsView.css';
@@ -52,7 +53,7 @@ class CarsView extends React.Component{
         })
     }
     render(){
-        const carRows = this.props.carsData.map( car => {
+        const carRows = this.props.carsData.map( (car, index) => {
             return (
             <tr key={car.id} onClick={() => this.chooseCar(car)}>
                 <td>{car.brand}</td>
@@ -60,6 +61,7 @@ class CarsView extends React.Component{
                 <td>{car.year}</td>
                 <td>{car.km}</td>
                 <td>{car.kmPerYear()}</td>
+                <td> <Link to={`/car/${index}`}>Click Me</Link></td>
             </tr>
                 )
         })
@@ -73,6 +75,7 @@ class CarsView extends React.Component{
                         <th>Year</th>
                         <th>KM</th>
                         <th>KM per year</th>
+                        <th>Car</th>
                     </tr>
                 </thead>
                 <tbody>

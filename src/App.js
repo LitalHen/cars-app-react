@@ -4,9 +4,10 @@ import CarsView from './components/CarsView';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Car from './data-models/Car';
 import { Spinner } from 'react-bootstrap';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Router } from 'react-router-dom';
 import About from './components/About';
 import ContactUs from './components/ContactUs';
+import SingleCar from './components/SingleCar';
 // ./ means the current directory
 // ../ means go up one directory
 // ./components/CarsView
@@ -63,6 +64,12 @@ class App extends React.Component {
 
         <Route exact path="/contactUs">
             <ContactUs/>
+        </Route>
+
+        <Route exact path ="/car/:index">
+          <SingleCar carsData={this.state.carsJson}>
+            
+          </SingleCar>
         </Route>
     
       </HashRouter>
